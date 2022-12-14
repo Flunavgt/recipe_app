@@ -2,11 +2,12 @@ class RecipeFoodsController < ApplicationController
   before_action :authenticate_user!, :set_recipe_food, only: %i[show edit update destroy]
 
   def index
-    @foods = Food.includes([:food])
+    @recipe = RecipeFood.all.includes([:food])
+    @foods = Food.all
   end
 
   def new
-    @recipe = Recipe.includes([:food]).find(params[:recipe_id])
+    @recipe = Recipe.find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.new
   end
 

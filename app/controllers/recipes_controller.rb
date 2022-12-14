@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.includes([:user]).all
+    @recipes = Recipe.all.includes([:user])
   end
 
   def show
@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
   end
 
   def public
-    @recipes = Recipe.where(public: true)
+    @recipes = Recipe.where(public: true).includes([:user]).includes([:food])
   end
 
   private
