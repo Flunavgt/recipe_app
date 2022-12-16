@@ -1,5 +1,5 @@
 databases:
-  - name: big-chefsito
+  - name: big-chefsito-database
     databaseName: recipe_app_development
     user: angelfede
 
