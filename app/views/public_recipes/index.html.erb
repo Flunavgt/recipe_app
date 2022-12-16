@@ -1,0 +1,24 @@
+<div>
+<h1 class="publicTitleRecep">Public Recipes</h1>
+<ul class="recipes-list">
+       <% if @recipes.empty? %>
+        <li>
+            There are not public recipes yet...
+        </li>
+        <% end %>
+        <% @recipes.each do |recipe|%>
+        <li class="publicRec">
+            <div class="recipe-card-header">
+             <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+             <h4>By: <%= recipe.user.name %> </h4>
+            </div>
+
+            <div class="info-card-pub">
+               <h4> Total food items: <%= recipe.recipe_foods.count %> </h4>
+              <p><%= "Total price: $#{total_price_recipe(recipe)}" %></p>
+              
+            </div>
+        </li>
+        <% end %>
+</ul>
+</div>

@@ -1,0 +1,26 @@
+<h2 class="recipeTitleCont"><%= link_to "Add new recipe", new_recipe_path %></h2>
+<div class="recipes-container">
+    
+    <ul class="recipes-list">
+       <% if @recipes.empty? %>
+        <li>
+            The list is empty, please add a recipe...
+        </li>
+        <% end %>
+        <% @recipes.each do |recipe|%>
+        <% if can? :read, recipe %>
+        <li class="recipeList">
+            <div class="recipe-card-header">
+             <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+
+            <% if can? :destroy, recipe %>
+            <%= link_to "Remove", recipe_path(recipe.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this recipe?"}, class: "remove-recipe-button" %>
+            <% end %>
+            </div>
+
+            <p class="recipe-description"><%= recipe.description %> </p>
+        </li>
+        <% end %>
+        <% end %>
+    </ul>
+</div>
